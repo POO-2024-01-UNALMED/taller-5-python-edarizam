@@ -36,3 +36,4 @@ class Zoologico:
             return 0
         for zona in self._zonas:
             totalAnimales += len(zona.getAnimales())
+        return totalAnimales

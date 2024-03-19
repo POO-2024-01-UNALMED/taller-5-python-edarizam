@@ -11,10 +11,10 @@ class Zona:
     def setNombre(self, nombre):
         self._nombre = nombre
     
-    def getZoologico(self):
+    def getZoo(self):
         return self._zoologico
     
-    def setZoologico(self, zoologico):
+    def setZoo(self, zoologico):
         self._zoologico = zoologico
     
     def getAnimales(self):

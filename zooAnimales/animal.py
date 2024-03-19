@@ -1,7 +1,7 @@
 class Animal:
     #Attributes
     _totalAnimales = 0
-
+    animales = []
     def __init__(self, nombre, edad, habitat, genero, zona = None):
         self._nombre = nombre
         self._edad = edad
@@ -9,6 +9,7 @@ class Animal:
         self._genero = genero
         self._zona = zona
         Animal._totalAnimales += 1
+        Animal.animales.append(self)
 
     #Getters and Setters
     def getNombre(self):
@@ -41,15 +42,61 @@ class Animal:
     def setZona(self, zona):
         self._zona = zona
     
+    @classmethod
+    def getMamifero(cls):
+        for animal in Animal.animales:
+            try:
+                if animal.caballos >= 0:
+                    return animal
+            except: continue
+        return 0
+    
+    @classmethod
+    def getPez(cls):
+        for animal in Animal.animales:
+            try:
+                if animal.bacalaos >= 0:
+                    return animal
+            except: continue
+        return 0
+    
+    @classmethod
+    def getReptil(cls):
+        for animal in Animal.animales:
+            try:
+                if animal.serpientes >= 0:
+                    return animal
+            except: continue
+        return 0
+    
+    @classmethod
+    def getAve(cls):
+        for animal in Animal.animales:
+            try:
+                if animal.halcones >= 0:
+                    return animal
+            except: continue
+        return 0
+    
+    @classmethod
+    def getAnfibio(cls):
+        for animal in Animal.animales:
+            try:
+                if animal.salamandras >= 0:
+                    return animal
+            except: continue
+        return 0
+    
     #Methods
     def movimiento(self):
         return "desplazarse"
     
-    def totalPorTipo(self):
-        return f"Mamiferos: {getattr(globals().Mamifero.cantidadMamiferos())()}\nAves: {getattr(globals().Ave.cantidadAves())()}\nReptiles: {getattr(globals().Reptil.cantidadReptiles())()}\nPeces: {getattr(globals().Pez.cantidadPeces())()}\nAnfibios: {getattr(globals().Anfibio.cantidadAnfibios())()}"
+    @classmethod
+    def totalPorTipo(cls):
+        return f"Mamiferos : {Animal.getMamifero().cantidadMamiferos()}\nAves : {Animal.getAve().cantidadAves()}\nReptiles : {Animal.getReptil().cantidadReptiles()}\nPeces : {Animal.getPez().cantidadPeces()}\nAnfibios : {Animal.getAnfibio().cantidadAnfibios()}"
     #{Mamifero.cantidadMamiferos()}\nAves: {Ave.cantidadAves()}\nReptiles: {Reptil.cantidadReptiles()}\nPeces: {Pez.cantidadPeces()}\nAnfibios: {Anfibio.cantidadAnfibios()}
     
-    def __str__(self):
+    def toString(self):
         if self._zona == None:
             return f"Mi nombre es {self._nombre}, tengo una edad de {self._edad}, habito en {self._habitat} y mi genero es {self._genero}"
         return f"Mi nombre es {self._nombre}, tengo una edad de {self._edad}, habito en {self._habitat} y mi genero es {self._genero}, la zona en la que me ubico es {self._zona}, en el {self._zona.getZoologico()}"
